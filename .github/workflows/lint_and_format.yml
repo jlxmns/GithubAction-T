@@ -12,9 +12,14 @@ jobs:
   lint-and-format:
     runs-on: ubuntu-latest
     steps:
-     - uses: actions/checkout@v4
-     - uses: astral-sh/ruff-action@v3
-       with:
-         args: "--version"
-     - run: ruff check --output-format=github
-     - run: ruff format --check --diff
+      - uses: actions/checkout@v4
+
+      - name: Run Ruff linter
+        uses: astral-sh/ruff-action@v3
+        with:
+          args: "check --output-format=github"
+
+      - name: Run Ruff formatter
+        uses: astral-sh/ruff-action@v3
+        with:
+          args: "format --check --diff"
